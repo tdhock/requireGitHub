@@ -1,3 +1,11 @@
+##' Print a requireGitHub declaration.
+##' @param ... unquoted package names.
+##' @return An invisible character vector of repository/package
+##' version codes.
+##' @author Toby Dylan Hocking
+##' @export
+##' @examples
+##' requireGitHub_code(requireGitHub)
 requireGitHub_code <- function(...){
   pkgs <- match.call()[-1]
   repo.code <- c()
