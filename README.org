@@ -20,9 +20,9 @@ requireGitHub::requireGitHub(
 #+END_SRC
 
 This code will install the specified package versions from the
-indicated GitHub repositories if they are not already installed. To
-get access to the =requireGitHub= function, execute the following
-code.
+indicated GitHub repositories if they are not already installed, then
+call =require(pkg)= to load each package. To get access to the
+=requireGitHub= function, execute the following code.
 
 #+BEGIN_SRC R
 install.packages("devtools")
