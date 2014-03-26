@@ -33,11 +33,19 @@ requireGitHub <- function(...){
   for(pkg.i in 1:nrow(match)){
     pkg.info <- match[pkg.i,]
     pkg.name <- pkg.info[["GithubRepo"]]
-    pkg.desc <- packageDescription(pkg.name)
-    same <- sapply(check.names, function(x){
-      pkg.info[[x]] == pkg.desc[[x]]
-    })
-    if(!all(same)){
+    pkg.desc <- suppressWarnings(packageDescription(pkg.name))
+    do.install <- FALSE
+    if(is.na(pkg.desc)[1]){
+      do.install <- TRUE
+    }else{
+      same <- sapply(check.names, function(x){
+        pkg.info[[x]] == pkg.desc[[x]]
+      })
+      if(!all(same)){
+        do.install <- TRUE
+      }
+    }
+    if(do.install){
       require(devtools)
       install_github(repo.code[[pkg.i]])
     }
