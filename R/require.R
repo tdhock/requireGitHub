@@ -29,6 +29,7 @@ requireGitHub <- function(...){
       require(devtools)
       install_github(repo.code[[pkg.i]])
     }
+    require(pkg.name, character.only=TRUE)
   }
   invisible(match[,-1])
 }

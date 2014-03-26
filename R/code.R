@@ -9,7 +9,8 @@ requireGitHub_code <- function(...){
     })
   }
   txt <- deparse(repo.code)
-  txt.return <- sub("c[(]", "requireGitHub(", gsub("[ ]+", "\n ", txt))
+  txt.return <-
+    sub("c[(]", "requireGitHub::requireGitHub(\n  ", gsub("[ ]+", "\n ", txt))
   cat(txt.return, "\n")
   invisible(repo.code)
 }

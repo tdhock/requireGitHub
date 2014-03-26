@@ -1,0 +1,48 @@
+* Problem: the versionless CRAN repository system
+
+As of 26 March 2014, the standard R package installation system,
+=install.packages("pkg")= can only install the most recent version
+from a CRAN-like repository. This creates a problem: if your code
+depends on =pkg= and its author changes it, then your code may stop
+working when you install the new version of =pkg=.
+
+* Solution: depend on GitHub packages instead
+
+R packages hosted on GitHub can be installed with
+=devtools::install_github=, which stores the commit version SHA1 hash
+in the GithubSHA1 field of the DESCRIPTION file. You can write down
+that version in your R code:
+
+#+BEGIN_SRC R
+requireGitHub::requireGitHub(
+  "tdhock/animint@057f34055ee876404caae7abc1c077a7bf126580",
+  "rstudio/ggvis@8aa5ae207b3da0ff218fb5a3829bbdd59e54043c") 
+#+END_SRC
+
+This code will install the specified package versions from the
+indicated GitHub repositories if they are not already installed. To
+get access to the =requireGitHub= function, execute the following
+code.
+
+#+BEGIN_SRC R
+install.packages("devtools")
+devtools::install_github("tdhock/requireGitHub")
+#+END_SRC
+
+Finally, you can generate a =requireGitHub(...)= declaration like the
+one above based on your currently installed packages:
+
+#+BEGIN_SRC R
+requireGitHub::requireGitHub_code(animint, ggvis)
+#+END_SRC
+
+* Related work
+
+- CRAN does store old package versions in =src/contrib/Archive=,
+  e.g. http://probability.ca/cran/src/contrib/Archive/directlabels/,
+  so you can download and install manually using =R CMD INSTALL=, or
+  use [[http://christophergandrud.blogspot.ca/2013/02/installoldpackages-repmis-command-for.html][Christopher Gandrud's repmis::InstallOldPackages]].
+
+- Instead of explicitly writing =requireGitHub= in each R script, you
+  can hide the package versions in a project-specific file, such as
+  the =packrat.lock= file used by [[http://rstudio.github.io/packrat/][RStudio's packrat]].
