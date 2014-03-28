@@ -14,7 +14,7 @@ requireGitHub <- function(...){
   pattern <-
     paste0("(?<GithubUsername>[^/]+)",
            "/",
-           "(?<GithubRepo>[^#]+)",
+           "(?<GithubRepo>[^@]+)",
            "@",
            "(?<GithubSHA1>[a-f0-9]{40})")
   match <- str_match_perl(repo.code, pattern)
