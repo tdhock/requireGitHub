@@ -39,7 +39,11 @@ requireGitHub <- function(...){
       do.install <- TRUE
     }else{
       same <- sapply(check.names, function(x){
-        pkg.info[[x]] == pkg.desc[[x]]
+        if(x %in% names(pkg.desc)){ #installed using devtools.
+          pkg.info[[x]] == pkg.desc[[x]]
+        }else{#installed manually, so we don't know what version it is.
+          FALSE
+        }
       })
       if(!all(same)){
         do.install <- TRUE

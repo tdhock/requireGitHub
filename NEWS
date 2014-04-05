@@ -1,3 +1,9 @@
+2014.4.4
+
+if there is no username and SHA1 in the installed DESCRIPTION file,
+then we do not know what version it is, so just install the written
+version.
+
 2014.3.26
 
 first version with requireGitHub and requireGitHub_code.
