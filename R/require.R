@@ -51,7 +51,7 @@ requireGitHub <- function(...){
     }
     if(do.install){
       require(devtools)
-      install_github(repo.code[[pkg.i]])
+      install_github(repo.code[[pkg.i]], build_vignettes=FALSE)
     }
     require(pkg.name, character.only=TRUE)
   }
