@@ -46,3 +46,6 @@ requireGitHub::requireGitHub_code(animint, ggvis)
 - Instead of explicitly writing =requireGitHub= in each R script, you
   can hide the package versions in a project-specific file, such as
   the =packrat.lock= file used by [[http://rstudio.github.io/packrat/][RStudio's packrat]].
+
+- [[http://projects.revolutionanalytics.com/documents/rrt/rrtpkgs/][Revolution's checkpoint]] can install CRAN packages at any date in the
+  past (they have an daily archive of CRAN since 2014-09-17).
