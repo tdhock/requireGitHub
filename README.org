@@ -6,6 +6,37 @@ from a CRAN-like repository. This creates a problem: if your code
 depends on =pkg= and its author changes it, then your code may stop
 working when you install the new version of =pkg=.
 
+* Example: install ChIPseeker from Bioconductor
+
+Bioconductor is a bit better since it provides *several* CRAN-like
+repositories, one for each version of Bioconductor. That means we can
+actually install old versions of packages (and their dependencies)
+using =install.packages=, if those packages are located on
+Bioconductor. For example, the R code
+
+#+BEGIN_SRC R
+install.packages("ChIPseeker", repos="http://www.bioconductor.org/packages/3.0/bioc")
+#+END_SRC
+
+means to install the =ChIPseeker= version 1.2.6 package referenced in
+http://www.bioconductor.org/packages/3.0/bioc/src/contrib/PACKAGES.
+
+In contrast, 
+
+#+BEGIN_SRC R
+install.packages("ChIPseeker", repos="http://www.bioconductor.org/packages/2.14/bioc")
+#+END_SRC
+
+means to install the older =ChIPseeker= version 1.0.11 package referenced in
+http://www.bioconductor.org/packages/2.14/bioc/src/contrib/PACKAGES.
+
+However there is still a potential problem: both versions of
+=ChIPseeker= list =Imports: plyr=. The =plyr= package is on CRAN, so
+the only version that can be installed using =install.packages= is the
+most recent version. If the most recent version of =plyr= introduced
+any changes that affect its usage in =ChIPseeker=, then there may be
+unwanted differences or errors.
+
 * Solution: depend on GitHub packages instead
 
 R packages hosted on GitHub can be installed with
