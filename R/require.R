@@ -5,9 +5,11 @@
 ##' @author Toby Dylan Hocking
 ##' @export
 ##' @examples
+##' if(FALSE){
 ##' requireGitHub::requireGitHub(
 ##'   "tdhock/animint@@057f34055ee876404caae7abc1c077a7bf126580",
 ##'   "rstudio/ggvis@@8aa5ae207b3da0ff218fb5a3829bbdd59e54043c")
+##' }
 requireGitHub <- function(...){
   repo.code <- c(...)
   stopifnot(is.character(repo.code))
@@ -50,8 +52,7 @@ requireGitHub <- function(...){
       }
     }
     if(do.install){
-      require(devtools)
-      install_github(
+      devtools::install_github(
         repo.code[[pkg.i]],
         upgrade_dependencies=FALSE,
         dependencies=FALSE,

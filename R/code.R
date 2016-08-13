@@ -5,7 +5,9 @@
 ##' @author Toby Dylan Hocking
 ##' @export
 ##' @examples
+##' if(FALSE){
 ##' requireGitHub_code(requireGitHub)
+##' }
 requireGitHub_code <- function(...){
   pkgs <- match.call()[-1]
   repo.code <- c()
