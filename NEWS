@@ -1,3 +1,8 @@
+2016.08.13
+
+utils::packageDescription to avoid errors if utils package is not
+loaded, for example during .Rprofile execution.
+
 2014.4.4
 
 if there is no username and SHA1 in the installed DESCRIPTION file,

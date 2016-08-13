@@ -33,7 +33,7 @@ requireGitHub <- function(...){
   for(pkg.i in 1:nrow(match)){
     pkg.info <- match[pkg.i,]
     pkg.name <- pkg.info[["GithubRepo"]]
-    pkg.desc <- suppressWarnings(packageDescription(pkg.name))
+    pkg.desc <- suppressWarnings(utils::packageDescription(pkg.name))
     do.install <- FALSE
     if(is.na(pkg.desc)[1]){
       do.install <- TRUE
@@ -54,6 +54,7 @@ requireGitHub <- function(...){
       install_github(
         repo.code[[pkg.i]],
         upgrade_dependencies=FALSE,
+        dependencies=FALSE,
         build_vignettes=FALSE)
     }
     require(pkg.name, character.only=TRUE)
