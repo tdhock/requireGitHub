@@ -1,3 +1,5 @@
+[[https://travis-ci.org/tdhock/requireGitHub][https://travis-ci.org/tdhock/requireGitHub.png?branch=master]]
+
 * Problem: the versionless CRAN repository system
 
 As of 26 March 2014, the standard R package installation system,
