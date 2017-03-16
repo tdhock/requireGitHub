@@ -1,3 +1,7 @@
+2017.03.16
+
+requireGitHub_package to support R packages in subdirectories.
+
 2016.08.13
 
 utils::packageDescription to avoid errors if utils package is not

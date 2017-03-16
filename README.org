@@ -69,6 +69,18 @@ one above based on your currently installed packages:
 requireGitHub::requireGitHub_code(animint, ggvis)
 #+END_SRC
 
+You can use =requireGitHub_package= for packages which are not in the
+root of a github repo, or for packages which do not have the same name
+as the repo.
+
+#+BEGIN_SRC R
+requireGitHub::requireGitHub_package(
+  "aldro61",
+  "mmit/Rpackage",
+  "edf81ba77fdd4b005ad89b81d9e12d289c8146e9",
+  "mmit")
+#+END_SRC
+
 * Related work
 
 - CRAN does store old package versions in =src/contrib/Archive=,
