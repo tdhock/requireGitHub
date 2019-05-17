@@ -1,3 +1,7 @@
+2019.5.17
+
+use namedCapture::str_match_variable and remotes::install_github.
+
 2017.03.16
 
 requireGitHub_package to support R packages in subdirectories.

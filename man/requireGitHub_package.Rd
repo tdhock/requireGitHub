@@ -40,4 +40,3 @@ requireGitHub_package(
 \author{
 Toby Dylan Hocking
 }
-

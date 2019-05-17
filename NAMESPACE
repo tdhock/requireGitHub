@@ -3,4 +3,5 @@
 export(requireGitHub)
 export(requireGitHub_code)
 export(requireGitHub_package)
+importFrom(remotes,install_github)
 importFrom(utils,packageDescription)

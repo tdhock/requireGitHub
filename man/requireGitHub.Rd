@@ -26,4 +26,3 @@ requireGitHub::requireGitHub(
 \author{
 Toby Dylan Hocking
 }
-

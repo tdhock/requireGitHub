@@ -1,17 +1,13 @@
 Package: requireGitHub
 Maintainer: Toby Dylan Hocking <tdhock5@gmail.com>
 Author: Toby Dylan Hocking
-Version: 2017.03.16
+Version: 2019.5.17
 License: GPL-3
-Title: Record GitHub package versions
+Title: Record GitHub Package Versions
 Description: Specific GitHub package versions can be written in R code
     and installed using devtools::install_github.
 Depends:
     R (>= 2.10)
 Imports:
-    namedCapture
-Suggests:
-    devtools,
-    testthat
-Remotes: tdhock/namedCapture
-RoxygenNote: 5.0.1
+    namedCapture (>= 2019.02.25), remotes
+

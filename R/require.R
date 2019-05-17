@@ -13,15 +13,15 @@
 requireGitHub <- function(...){
   repo.code <- c(...)
   stopifnot(is.character(repo.code))
-  pattern <- paste0(
+  match <- namedCapture::str_match_variable(
+    repo.code,
     "^",
-    "(?<GithubUsername>[^/]+)",
+    GithubUsername="[^/]+",
     "/",
-    "(?<GithubRepo>[^/@]+)",
+    GithubRepo="[^/@]+",
     "@",
-    "(?<GithubSHA1>[a-f0-9]{40})",
+    GithubSHA1="[a-f0-9]{40}",
     "$")
-  match <- namedCapture::str_match_named(repo.code, pattern)
   pkg.counts <- table(match[,"GithubRepo"])
   bad <- pkg.counts > 1
   if(any(bad)){
@@ -31,7 +31,7 @@ requireGitHub <- function(...){
   bad <- is.na(match[,1])
   if(any(bad)){
     print(repo.code[bad])
-    stop("did not match pattern ", pattern)
+    stop("did not match user/repo@sha1")
   }
   match.df <- data.frame(match, install=NA, row.names=match[, "GithubRepo"])
   for(pkg.i in 1:nrow(match)){
@@ -41,7 +41,7 @@ requireGitHub <- function(...){
       pkg.info[["GithubRepo"]],
       pkg.info[["GithubSHA1"]],
       pkg.info[["GithubRepo"]])
-      
+
   }
   invisible(match.df)
 }
@@ -70,6 +70,7 @@ requireGitHub <- function(...){
 ##'   "mmit")
 ##' }
 ##' @importFrom utils packageDescription
+##' @importFrom remotes install_github
 requireGitHub_package <- function(username, path, sha1, pkg.name){
   stopifnot(
     is.character(username), length(username)==1,
@@ -97,7 +98,7 @@ requireGitHub_package <- function(username, path, sha1, pkg.name){
     }
   }
   if(do.install){
-    devtools::install_github(
+    remotes::install_github(
       sprintf("%s/%s@%s", username, path, sha1),
       upgrade_dependencies=FALSE,
       dependencies=FALSE,
