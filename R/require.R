@@ -13,7 +13,7 @@
 requireGitHub <- function(...){
   repo.code <- c(...)
   stopifnot(is.character(repo.code))
-  match <- namedCapture::str_match_variable(
+  match <- nc::capture_first_vec(
     repo.code,
     "^",
     GithubUsername="[^/]+",
@@ -22,7 +22,8 @@ requireGitHub <- function(...){
     "@",
     GithubSHA1="[a-f0-9]{40}",
     "$")
-  pkg.counts <- table(match[,"GithubRepo"])
+  repo.vec <- match[["GithubRepo"]]
+  pkg.counts <- table(repo.vec)
   bad <- pkg.counts > 1
   if(any(bad)){
     print(pkg.counts[bad])
@@ -33,7 +34,7 @@ requireGitHub <- function(...){
     print(repo.code[bad])
     stop("did not match user/repo@sha1")
   }
-  match.df <- data.frame(match, install=NA, row.names=match[, "GithubRepo"])
+  match.df <- data.frame(match, install=NA, row.names=repo.vec)
   for(pkg.i in 1:nrow(match)){
     pkg.info <- match[pkg.i,]
     match.df$install[[pkg.i]] <- requireGitHub_package(

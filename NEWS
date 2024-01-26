@@ -1,3 +1,7 @@
+2024.1.25
+
+use nc instead of namedCapture (archived).
+
 2019.5.17
 
 use namedCapture::str_match_variable and remotes::install_github.
